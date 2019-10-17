@@ -2,6 +2,7 @@ package com.javarush.task.task32.task3211;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /* 
@@ -19,7 +20,17 @@ public class Solution {
     }
 
     public static boolean compareMD5(ByteArrayOutputStream byteArrayOutputStream, String md5) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.reset();
+        md.update(byteArrayOutputStream.toByteArray());
+        byte[] digest = md.digest();
+        BigInteger bigInt = new BigInteger(1, digest);
+        String md5Hex = bigInt.toString(16);
 
-        return false;
+        while( md5Hex.length() < 32 ){
+            md5Hex = "0" + md5Hex;
+        }
+
+        return md5Hex.equals(md5);
     }
 }
