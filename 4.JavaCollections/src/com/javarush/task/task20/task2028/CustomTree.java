@@ -9,15 +9,6 @@ import java.util.List;
 Построй дерево(1)
 */
 public class CustomTree extends AbstractList<String> implements Cloneable, Serializable {
-
-    Entry<String> root;
-    private Entry<String> last;
-    private int size = 0;
-
-    public CustomTree() {
-        this.root = new Entry<>("elementRoot");
-    }
-
     @Override
     public String get(int i) {
         throw new UnsupportedOperationException();
@@ -25,7 +16,7 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
 
     @Override
     public int size() {
-        return size;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -34,26 +25,7 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
     }
 
     public void add(int index, String element){
-        if(root.isAvailableToAddChildren()) {
-            last = root;
-           if (root.availableToAddLeftChildren) {
-               last = root;
-           } else if (root.availableToAddRightChildren){
-               last = root.leftChild;
-           }
-        }
-
-        Entry<String> newElement = new Entry<>(element);
-        if(last.availableToAddLeftChildren){
-            last.leftChild = newElement;
-            last.availableToAddLeftChildren = false;
-            newElement.parent = last;
-        } else if(last.availableToAddRightChildren){
-            last.rightChild = newElement;
-            last.availableToAddRightChildren = false;
-            newElement.parent = last;
-        }
-        size++;
+        throw new UnsupportedOperationException();
     }
 
     public String remove(int index){
@@ -70,14 +42,6 @@ public class CustomTree extends AbstractList<String> implements Cloneable, Seria
 
     public boolean addAll(int index, Collection<? extends String> c){
         throw new UnsupportedOperationException();
-    }
-
-    public Entry<String> getParent(String s){
-        throw new UnsupportedOperationException();
-    }
-
-    public boolean isEmpty(){
-        return root == null;
     }
 
     static class Entry<T> implements Serializable {
